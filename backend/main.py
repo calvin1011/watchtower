@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from config import settings
+from config import settings, validate_required_env
 from database import init_db
 from routes.digest import router as digest_router
 from scheduler import shutdown_scheduler, start_scheduler
@@ -15,6 +15,7 @@ from routes.intel import router as intel_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    validate_required_env()
     if settings.database_url:
         init_db(settings.database_url)
     start_scheduler()

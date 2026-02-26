@@ -168,10 +168,10 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** One-command run, env validation, error handling.
 
 **Tasks:**
-- [ ] `docker-compose.yml` - backend, frontend, db (or Supabase external)
-- [ ] `backend/Dockerfile`, `frontend/Dockerfile`
-- [ ] Startup checks for required env vars
-- [ ] README update with Docker instructions
+- [x] `docker-compose.yml` - backend, frontend, db (or Supabase external)
+- [x] `backend/Dockerfile`, `frontend/Dockerfile`
+- [x] Startup checks for required env vars
+- [x] README update with Docker instructions
 
 **Commit:** `chore: Docker Compose and production readiness`
 

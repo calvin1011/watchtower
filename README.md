@@ -26,7 +26,14 @@ HappyCo's Joy AI looks inward at work orders, technicians, and inspections. Watc
 ## Quick Start
 
 1. Copy `.env.example` to `.env` and fill in your API keys (see [SETUP.md](docs/SETUP.md))
-2. `docker-compose up` or run backend/frontend separately
+2. Run with Docker:
+   ```bash
+   docker-compose up --build
+   ```
+   - Backend: http://localhost:8000
+   - Frontend: http://localhost:3000
+
+Or run backend and frontend separately (see [SETUP.md](docs/SETUP.md)).
 
 ## Project Structure
 
