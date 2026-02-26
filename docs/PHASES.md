@@ -49,9 +49,9 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Minimal API with health check and routing structure.
 
 **Tasks:**
-- [ ] `backend/main.py` - FastAPI app entry
-- [ ] `backend/routes/health.py` - GET /health
-- [ ] `backend/config.py` - Settings from env (pydantic-settings)
+- [x] `backend/main.py` - FastAPI app entry
+- [x] `backend/routes/health.py` - GET /health
+- [x] `backend/config.py` - Settings from env (pydantic-settings)
 
 **Commit:** `feat: FastAPI shell and health endpoint`
 
@@ -199,4 +199,5 @@ Before starting each new phase, ensure:
 1. All phase tasks are complete
 2. No lint errors
 3. `.env.example` is up to date
-4. Run `git add -A && git status` and commit with the phase message
+4. `.gitignore` is updated with any new paths that shouldn't be committed
+5. Run `git add -A && git status` and commit with the phase message
