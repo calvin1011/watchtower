@@ -23,10 +23,11 @@ def mock_db_session():
 
 @pytest.fixture
 def client_with_db(mock_db_session):
-    """Test client with overridden get_session."""
-    from database import get_session
+    """Test client with overridden get_session and get_session_optional."""
+    from database import get_session, get_session_optional
 
     app.dependency_overrides[get_session] = mock_db_session
+    app.dependency_overrides[get_session_optional] = mock_db_session
     with TestClient(app) as c:
         yield c
     app.dependency_overrides.clear()
