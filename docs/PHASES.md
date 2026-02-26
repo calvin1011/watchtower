@@ -127,14 +127,16 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Automated weekly run every Monday 7:00 AM.
 
 **Tasks:**
-- [ ] `backend/scheduler.py` - APScheduler cron job
-- [ ] Job: scrape_all -> analyze -> store -> send_digest
+- [x] `backend/scheduler.py` - APScheduler cron job
+- [x] Job: scrape_all -> analyze -> store -> send_digest
+
+**Tests:** `backend/tests/test_scheduler.py` (run `pytest -v` from backend)
 
 **Commit:** `feat: weekly scheduler for Monday digest`
 
 ---
 
-## Phase 8: Frontend - Dashboard
+## Phase 8: Frontend - modern animated Dashboard
 
 **Goal:** Next.js 14 dashboard with intel feed.
 

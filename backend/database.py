@@ -25,3 +25,16 @@ async def get_session():
         raise RuntimeError("Database not initialized. Call init_db first.")
     async with _session_factory() as session:
         yield session
+
+
+def session_context():
+    """
+    Async context manager for use outside FastAPI request scope (e.g. scheduler).
+
+    Usage:
+        async with session_context() as session:
+            ...
+    """
+    if _session_factory is None:
+        raise RuntimeError("Database not initialized. Call init_db first.")
+    return _session_factory()

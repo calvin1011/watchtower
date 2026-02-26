@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from config import settings
 from database import init_db
 from routes.digest import router as digest_router
+from scheduler import shutdown_scheduler, start_scheduler
 from routes.health import router as health_router
 from routes.intel import router as intel_router
 
@@ -15,7 +16,9 @@ from routes.intel import router as intel_router
 async def lifespan(app: FastAPI):
     if settings.database_url:
         init_db(settings.database_url)
+    start_scheduler()
     yield
+    shutdown_scheduler()
 
 
 app = FastAPI(
