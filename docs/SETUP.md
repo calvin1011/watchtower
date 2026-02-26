@@ -186,3 +186,4 @@ docker-compose up
 | Resend bounce | Use verified domain or `onboarding@resend.dev` |
 | pgvector not found | Run `CREATE EXTENSION vector;` in Supabase SQL Editor |
 | idx_intel_embedding fails | Create after inserting intel: `CREATE INDEX idx_intel_embedding ON intel_items USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);` |
+| website_scraper ImportError | Run `pip install playwright` then `playwright install chromium` |

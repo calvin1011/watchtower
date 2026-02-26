@@ -62,17 +62,21 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Data collection from competitor sources.
 
 **Order:**
-1. `backend/scrapers/blog_scraper.py` - HTTP fetch competitor blog/news
-2. `backend/scrapers/review_scraper.py` - SerpAPI G2/Capterra
-3. `backend/scrapers/jobs_scraper.py` - SerpAPI Jobs
-4. `backend/scrapers/website_scraper.py` - Playwright (last, most complex)
+1. [x] `backend/scrapers/blog_scraper.py` - HTTP fetch competitor blog/news
+2. [x] `backend/scrapers/review_scraper.py` - SerpAPI G2/Capterra
+3. [x] `backend/scrapers/jobs_scraper.py` - SerpAPI Jobs
+4. [x] `backend/scrapers/website_scraper.py` - Playwright (last, most complex)
 
 **Tasks per scraper:**
 - Fetch data
-- Return structured dicts (title, url, snippet, date)
+- Return structured dicts (title, url, snippet, date) compatible with Phase 4 agent
 - Handle rate limits and errors
 
-**Commit after each scraper:** `feat: add {blog|review|jobs|website} scraper`
+**Integration:**
+- `backend/scrapers/competitor_config.py` - AppFolio, Buildium, SmartRent, Entrata sources
+- `backend/scrapers/scrape_all.py` - Convenience for Phase 5 pipeline
+
+**Commit:** `feat: add scrapers (blog, review, jobs, website)`
 
 ---
 

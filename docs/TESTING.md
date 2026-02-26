@@ -35,6 +35,6 @@ pytest -v
 ## Adding Tests for New Phases
 
 - **Phase 2 (FastAPI):** Add `test_health.py` for GET /health
-- **Phase 3 (Scrapers):** Add `test_blog_scraper.py` etc. with mocked HTTP
+- **Phase 3 (Scrapers):** `test_blog_scraper.py`, `test_review_scraper.py`, `test_jobs_scraper.py`, `test_scraper_agent_integration.py` with mocked HTTP/SerpAPI
 - **Phase 4 (Agent):** Add `test_agent.py` with mocked Claude
 - **Phase 5+ (Routes):** Add `test_routes_intel.py` with TestClient
