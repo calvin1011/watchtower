@@ -179,6 +179,19 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 
 ## Phase 11: Full CI/CD Pipeline
 
+**Goal:** Automated test, lint, and deploy on push/merge.
+
+**Tasks:**
+- [x] `.github/workflows/ci.yml` - Run on push/PR: backend pytest + ruff, frontend build + lint
+- [x] `.github/workflows/deploy.yml` - Deploy on push to main: backend (Render), frontend (Vercel)
+- [x] Add ruff config (backend/pyproject.toml)
+- [x] README update with CI/CD and deployment instructions
+
+**CI:** Tests and lint must pass before merge.
+**CD:** Requires secrets: `VERCEL_*` for frontend, `RAILWAY_TOKEN` or `RENDER_DEPLOY_HOOK` for backend.
+
+**Commit:** `feat: GitHub Actions CI/CD pipeline`
+
 ---
 
 ## Phase 12: End-to-End & Loom

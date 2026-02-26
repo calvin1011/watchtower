@@ -53,6 +53,22 @@ watchtower/
 - SmartRent
 - Entrata
 
+## CI/CD
+
+- **CI** (`.github/workflows/ci.yml`): On every push/PR, runs backend pytest + ruff, frontend build + lint.
+- **CD** (`.github/workflows/deploy.yml`): On push to `main`, deploys backend and/or frontend if configured.
+
+### Enabling Deployments
+
+1. **Repository variables** (Settings → Secrets and variables → Actions → Variables):
+   - `DEPLOY_BACKEND`: set to `true` to deploy backend to Render
+   - `DEPLOY_FRONTEND`: set to `true` to deploy frontend to Vercel
+   - `NEXT_PUBLIC_API_URL`: production API URL (set in Vercel project env vars for frontend builds)
+
+2. **Secrets** (Settings → Secrets and variables → Actions → Secrets):
+   - **Backend (Render)**: `RENDER_DEPLOY_HOOK_URL` — from Render Dashboard → Your Service → Settings → Deploy Hook
+   - **Frontend (Vercel)**: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` — from [Vercel](https://vercel.com/account/tokens) and `vercel link` locally
+
 ## Documentation
 
 - [SETUP.md](docs/SETUP.md) - Environment setup and API keys
