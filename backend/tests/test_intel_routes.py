@@ -1,6 +1,6 @@
 """Tests for intel API routes."""
 
-from datetime import UTC, datetime
+from datetime import datetime, UTC
 from unittest.mock import AsyncMock, MagicMock, patch
 from uuid import uuid4
 
@@ -8,6 +8,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from main import app
+
 
 # Avoid "Database not initialized" when testing without DATABASE_URL
 @pytest.fixture

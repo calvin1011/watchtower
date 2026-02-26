@@ -6,3 +6,6 @@ exclude = ["__pycache__", ".venv", "venv"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
 ignore = ["E501"]  # Line too long - handled by formatter
+
+[tool.ruff.lint.isort]
+known-first-party = ["config", "database", "digest", "embeddings", "main", "models", "routes", "scrapers", "services"]
