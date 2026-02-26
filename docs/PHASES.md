@@ -101,9 +101,9 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Scrape -> Analyze -> Store flow.
 
 **Tasks:**
-- [ ] `backend/services/intel_service.py` - Orchestrate scrape + agent + DB write
-- [ ] `backend/routes/intel.py` - GET /intel, GET /intel/{competitor}, GET /intel/signals/{type}
-- [ ] Optional: Generate embeddings (OpenAI) for pgvector semantic search
+- [x] `backend/services/intel_service.py` - Orchestrate scrape + agent + DB write
+- [x] `backend/routes/intel.py` - GET /intel, GET /intel/{competitor}, GET /intel/signals/{type}
+- [x] Optional: Generate embeddings (OpenAI) for pgvector semantic search
 
 **Commit:** `feat: intel pipeline and API routes`
 

@@ -21,6 +21,7 @@ class Settings(BaseSettings):
 
     # AI
     anthropic_api_key: str | None = None
+    openai_api_key: str | None = None
 
     # Scraping
     serpapi_key: str | None = None

@@ -5,7 +5,7 @@
 - Python 3.12+
 - Node.js 18+
 - Supabase account
-- API keys for Anthropic, SerpAPI, Resend
+- API keys for Anthropic, OpenAI, SerpAPI, Resend
 
 ---
 
@@ -105,6 +105,13 @@ CREATE POLICY "Service role full access on digests" ON digests
 3. **Account** > **API Keys** > **Create Key**
 4. Copy the key (starts with `sk-ant-`)
 5. Put in `.env` as `ANTHROPIC_API_KEY=sk-ant-...`
+
+### OpenAI (Embeddings for Semantic Search)
+
+1. Go to [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Create an API key
+3. Put in `.env` as `OPENAI_API_KEY=sk-...`
+4. Used for generating embeddings when storing intel and for GET /intel/search
 
 ### SerpAPI (Reviews & Jobs)
 
