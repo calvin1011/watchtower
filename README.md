@@ -26,8 +26,7 @@ HappyCo's Joy AI looks inward at work orders, technicians, and inspections. Watc
 ## Quick Start
 
 1. Copy `.env.example` to `.env` and fill in your API keys (see [SETUP.md](docs/SETUP.md))
-2. Run database migrations in Supabase (SQL provided in setup guide)
-3. `docker-compose up` or run backend/frontend separately
+2. `docker-compose up` or run backend/frontend separately
 
 ## Project Structure
 
@@ -56,4 +55,4 @@ watchtower/
 
 ## License
 
-Private. Built for HappyCo hiring assessment.
+Built for HappyCo hiring assessment.

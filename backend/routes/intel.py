@@ -3,9 +3,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database import get_session
+from database import get_session, get_session_optional
 from services.intel_service import (
     get_intel_by_id,
     get_intel_items,
@@ -36,16 +37,22 @@ def _intel_to_dict(item) -> dict:
 
 @router.get("")
 async def list_intel(
-    session: AsyncSession = Depends(get_session),
+    session: AsyncSession | None = Depends(get_session_optional),
     competitor: str | None = Query(None, description="Filter by competitor"),
     signal_type: str | None = Query(None, description="Filter by signal type"),
     limit: int = Query(100, ge=1, le=500),
 ) -> dict:
-    """List intel items with optional filters."""
-    items = await get_intel_items(
-        session, competitor=competitor, signal_type=signal_type, limit=limit
-    )
-    return {"items": [_intel_to_dict(i) for i in items], "count": len(items)}
+    """List intel items with optional filters. Returns empty when DB is not configured or unreachable."""
+    if session is None:
+        return {"items": [], "count": 0}
+    try:
+        items = await get_intel_items(
+            session, competitor=competitor, signal_type=signal_type, limit=limit
+        )
+        return {"items": [_intel_to_dict(i) for i in items], "count": len(items)}
+    except (OSError, OperationalError):
+        # DB unreachable (e.g. bad host, offline, getaddrinfo failed)
+        return {"items": [], "count": 0}
 
 
 @router.get("/search")

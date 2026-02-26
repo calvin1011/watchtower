@@ -173,6 +173,8 @@ npm run dev
 
 Check: `http://localhost:3000`
 
+The frontend calls the backend at `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`). Copy `frontend/.env.example` to `frontend/.env.local` and adjust if needed. The backend must be running and CORS allows `http://localhost:3000`.
+
 ---
 
 ## 8. Docker (Optional)

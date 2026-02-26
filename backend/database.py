@@ -27,6 +27,15 @@ async def get_session():
         yield session
 
 
+async def get_session_optional():
+    """Yields session if DB is initialized, else None (for read-only endpoints when DB may be unconfigured)."""
+    if _session_factory is None:
+        yield None
+        return
+    async with _session_factory() as session:
+        yield session
+
+
 def session_context():
     """
     Async context manager for use outside FastAPI request scope (e.g. scheduler).

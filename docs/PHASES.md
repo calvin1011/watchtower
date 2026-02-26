@@ -141,10 +141,10 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Next.js 14 dashboard with intel feed.
 
 **Tasks:**
-- [ ] `frontend/` - Next.js 14 App Router, Tailwind, shadcn/ui
-- [ ] `components/IntelFeed.tsx` - Live intel cards
-- [ ] `components/ThreatBadge.tsx` - HIGH / MEDIUM / LOW
-- [ ] `app/page.tsx` - Dashboard home
+- [x] `frontend/` - Next.js 14 App Router, Tailwind, shadcn/ui
+- [x] `components/IntelFeed.tsx` - Live intel cards
+- [x] `components/ThreatBadge.tsx` - HIGH / MEDIUM / LOW
+- [x] `app/page.tsx` - Dashboard home
 
 **Commit:** `feat: dashboard with intel feed`
 
@@ -177,7 +177,11 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 
 ---
 
-## Phase 11: End-to-End & Loom
+## Phase 11: Full CI/CD Pipeline
+
+---
+
+## Phase 12: End-to-End & Loom
 
 **Goal:** Full run, Loom recording.
 

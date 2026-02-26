@@ -1,13 +1,18 @@
 """Application settings loaded from environment variables."""
 
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# Look for .env in backend/ and project root (when running from backend/)
+_env_files = [".env", str(Path(__file__).resolve().parent.parent / ".env")]
 
 
 class Settings(BaseSettings):
     """Settings loaded from .env or environment variables."""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=_env_files,
         env_file_encoding="utf-8",
         case_sensitive=False,
         extra="ignore",
