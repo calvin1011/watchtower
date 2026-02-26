@@ -114,9 +114,9 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Assemble and send Monday morning briefing via Resend.
 
 **Tasks:**
-- [ ] `backend/digest.py` - Build digest from intel, format for email
-- [ ] `backend/routes/digest.py` - POST /digest/send, GET /digest/history
-- [ ] Group by threat level, include happyco_response per item
+- [x] `backend/digest.py` - Build digest from intel, format for email
+- [x] `backend/routes/digest.py` - POST /digest/send, GET /digest/history
+- [x] Group by threat level, include happyco_response per item
 
 **Commit:** `feat: email digest via Resend`
 
