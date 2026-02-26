@@ -5,9 +5,10 @@ Commit before starting each new phase. Ensures a clean history and safe rollback
 ## Before Each Commit
 
 1. All phase tasks are done
-2. No lint errors: `ruff check backend/` (when available)
-3. `.env` is not staged (it is gitignored)
-4. `.env.example` reflects any new required keys
+2. **Run `pytest -v` from `backend/` and ensure tests pass**
+3. No lint errors: `ruff check backend/` (when available)
+4. `.env` is not staged (it is gitignored)
+5. `.env.example` reflects any new required keys
 
 ## Phase Commit Messages
 

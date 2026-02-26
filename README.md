@@ -51,6 +51,7 @@ watchtower/
 
 - [SETUP.md](docs/SETUP.md) - Environment setup and API keys
 - [PHASES.md](docs/PHASES.md) - Build order and commit checkpoints
+- [TESTING.md](docs/TESTING.md) - Unit tests; run before each phase commit
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) - Technical design
 
 ## License

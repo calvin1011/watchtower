@@ -134,7 +134,18 @@ Edit `.env` and fill every value. The app will fail on startup if required keys 
 
 ---
 
-## 5. Run Backend
+## 5. Run Tests
+
+```bash
+cd backend
+pytest -v
+```
+
+Unit tests run without DATABASE_URL. Integration tests require DATABASE_URL and network access. See [TESTING.md](TESTING.md).
+
+---
+
+## 6. Run Backend
 
 ```bash
 cd backend
@@ -145,7 +156,7 @@ Check: `http://localhost:8000/health`
 
 ---
 
-## 6. Run Frontend
+## 7. Run Frontend
 
 ```bash
 cd frontend
@@ -157,7 +168,7 @@ Check: `http://localhost:3000`
 
 ---
 
-## 7. Docker (Optional)
+## 8. Docker (Optional)
 
 ```bash
 docker-compose up

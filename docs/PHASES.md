@@ -2,6 +2,10 @@
 
 Detailed phase document for building the HappyCo Competitive Intelligence Agent. Each phase ends with a commit checkpoint before starting the next.
 
+## Testing Requirement
+
+**Every phase must include unit tests for critical features. Tests must pass before moving forward.** See [TESTING.md](TESTING.md) for how to run tests and add new ones.
+
 ---
 
 ## Phase 0: Project Foundation
@@ -33,6 +37,8 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 - `IntelItem`: competitor, signal_type, threat_level, summary, embedding (vector), etc.
 - `Digest`: week_of, content (JSON), sent_at, recipient
 - `Competitor`: config table for tracked competitors (optional; can be config-based)
+
+**Tests:** `backend/tests/test_models.py`, `test_database.py` (run `pytest -v` from backend)
 
 **Commit:** `feat: database models and async connection`
 
