@@ -14,10 +14,10 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 
 **Tasks:**
 - [x] README.md
-- [ ] .env.example
-- [ ] docs/SETUP.md, docs/ARCHITECTURE.md
-- [ ] Supabase project created
-- [ ] Run SQL schema in Supabase (provided in SETUP.md; includes RLS and policies)
+- [x] .env.example
+- [x] docs/SETUP.md, docs/ARCHITECTURE.md
+- [x] Supabase project created
+- [x] Run SQL schema in Supabase (provided in SETUP.md; includes RLS and policies)
 
 **Commit:** `chore: initial docs, env template, and project structure`
 
@@ -28,10 +28,10 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** PostgreSQL + pgvector models and async connection.
 
 **Tasks:**
-- [ ] `backend/models.py` - IntelItem, Digest, Competitor models
-- [ ] All SQL migrations must include RLS and policies (see SETUP.md)
-- [ ] `backend/database.py` - Async SQLAlchemy + pgvector
-- [ ] `backend/requirements.txt` - Dependencies
+- [x] `backend/models.py` - IntelItem, Digest, Competitor models
+- [x] All SQL migrations must include RLS and policies (see SETUP.md)
+- [x] `backend/database.py` - Async SQLAlchemy + pgvector
+- [x] `backend/requirements.txt` - Dependencies
 
 **Key files:**
 - `IntelItem`: competitor, signal_type, threat_level, summary, embedding (vector), etc.
