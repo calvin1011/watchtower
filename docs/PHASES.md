@@ -155,9 +155,9 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Per-competitor view and digest history.
 
 **Tasks:**
-- [ ] `app/competitors/[slug]/page.tsx` - Deep dive per competitor
-- [ ] `app/digest/page.tsx` - Past digests
-- [ ] `components/CompetitorCard.tsx`, `components/DigestPreview.tsx`
+- [x] `app/competitors/[slug]/page.tsx` - Deep dive per competitor
+- [x] `app/digest/page.tsx` - Past digests
+- [x] `components/CompetitorCard.tsx`, `components/DigestPreview.tsx`
 
 **Commit:** `feat: competitor and digest pages`
 
