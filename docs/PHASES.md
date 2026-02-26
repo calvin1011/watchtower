@@ -81,10 +81,12 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 **Goal:** Claude-powered analysis of scraped data into intel.
 
 **Tasks:**
-- [ ] `backend/agent.py` - System prompt, Claude API call
-- [ ] Input: raw scraped data
-- [ ] Output: JSON with summary, threat_level, threat_reason, happyco_response, signal_type, confidence
-- [ ] Use HappyCo context: Joy AI, 5.5M units, 2.7-day turns, centralized maintenance, plugin marketplace
+- [x] `backend/agent.py` - System prompt, Claude API call
+- [x] Input: raw scraped data
+- [x] Output: JSON with summary, threat_level, threat_reason, happyco_response, signal_type, confidence
+- [x] Use HappyCo context: Joy AI, 5.5M units, 2.7-day turns, centralized maintenance, plugin marketplace
+
+**Tests:** `backend/tests/test_agent.py` (run `pytest -v` from backend)
 
 **Commit:** `feat: Claude agent for competitive intel analysis`
 
