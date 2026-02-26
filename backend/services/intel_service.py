@@ -1,7 +1,6 @@
 """Intel pipeline: scrape -> analyze -> store."""
 
 import asyncio
-from datetime import datetime
 from uuid import UUID
 
 from sqlalchemy import select

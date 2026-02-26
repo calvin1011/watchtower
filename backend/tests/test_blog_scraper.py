@@ -2,8 +2,6 @@
 
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from scrapers.blog_scraper import (
     _parse_html_articles,
     _parse_rss_feed,

@@ -1,6 +1,6 @@
 """Tests for intel API routes."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 from uuid import uuid4
 
@@ -54,8 +54,8 @@ def test_list_intel_returns_items(client_with_db):
     fake_item.happyco_response = "Highlight scale"
     fake_item.confidence = 0.8
     fake_item.source_url = "https://example.com"
-    fake_item.detected_at = datetime.now(timezone.utc)
-    fake_item.created_at = datetime.now(timezone.utc)
+    fake_item.detected_at = datetime.now(UTC)
+    fake_item.created_at = datetime.now(UTC)
 
     with patch("routes.intel.get_intel_items", new_callable=AsyncMock) as mock_get:
         mock_get.return_value = [fake_item]
@@ -111,8 +111,8 @@ def test_get_intel_item_found(client_with_db):
     fake_item.happyco_response = "Monitor"
     fake_item.confidence = 0.6
     fake_item.source_url = None
-    fake_item.detected_at = datetime.now(timezone.utc)
-    fake_item.created_at = datetime.now(timezone.utc)
+    fake_item.detected_at = datetime.now(UTC)
+    fake_item.created_at = datetime.now(UTC)
 
     with patch("routes.intel.get_intel_by_id", new_callable=AsyncMock) as mock_get:
         mock_get.return_value = fake_item

@@ -6,9 +6,6 @@ from scrapers.blog_scraper import fetch_blog_posts
 from scrapers.competitor_config import get_competitor
 from scrapers.jobs_scraper import fetch_job_listings
 from scrapers.review_scraper import fetch_reviews
-from scrapers.website_scraper import fetch_website_content
-
-
 def scrape_competitor(competitor_name: str) -> list[dict[str, Any]]:
     """
     Scrape all configured sources for a competitor.

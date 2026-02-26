@@ -1,6 +1,6 @@
 """Tests for digest module and routes."""
 
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 from uuid import uuid4
 
@@ -25,7 +25,7 @@ def test_item_to_dict():
     item.summary = "Launched AI"
     item.happyco_response = "Highlight scale"
     item.source_url = "https://example.com"
-    item.detected_at = datetime(2025, 2, 24, 10, 0, 0, tzinfo=timezone.utc)
+    item.detected_at = datetime(2025, 2, 24, 10, 0, 0, tzinfo=UTC)
 
     d = _item_to_dict(item)
     assert d["competitor"] == "AppFolio"
@@ -141,7 +141,7 @@ def test_digest_send_success(client_with_db):
     fake_digest.id = uuid4()
     fake_digest.week_of = date(2025, 2, 24)
     fake_digest.content = {"grouped": {}, "week_of": "2025-02-24"}
-    fake_digest.sent_at = datetime.now(timezone.utc)
+    fake_digest.sent_at = datetime.now(UTC)
     fake_digest.recipient = "test@example.com"
 
     mock_session = AsyncMock()

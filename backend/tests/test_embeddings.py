@@ -2,8 +2,6 @@
 
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from embeddings import get_embedding
 
 

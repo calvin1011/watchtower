@@ -1,7 +1,7 @@
 """Weekly scheduler for Monday morning digest: scrape -> analyze -> store -> send_digest."""
 
 import logging
-from datetime import timezone
+from datetime import UTC
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
@@ -55,11 +55,11 @@ def get_scheduler() -> AsyncIOScheduler:
     if _scheduler is not None:
         return _scheduler
 
-    _scheduler = AsyncIOScheduler(timezone=timezone.utc)
+    _scheduler = AsyncIOScheduler(timezone=UTC)
     # Every Monday at 7:00 AM UTC
     _scheduler.add_job(
         _weekly_digest_job,
-        CronTrigger(day_of_week="mon", hour=7, minute=0, timezone=timezone.utc),
+        CronTrigger(day_of_week="mon", hour=7, minute=0, timezone=UTC),
         id="weekly_digest",
         name="Weekly Monday Digest",
     )

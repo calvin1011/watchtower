@@ -1,9 +1,5 @@
 """Tests for intel service."""
 
-from unittest.mock import AsyncMock, MagicMock, patch
-
-import pytest
-
 from services.intel_service import get_tracked_competitors
 
 

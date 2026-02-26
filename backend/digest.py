@@ -1,7 +1,7 @@
 """Build and send Monday morning competitive intel digest via Resend."""
 
 from collections import defaultdict
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
 import resend
@@ -102,7 +102,7 @@ async def build_digest(
     """
     items = await get_intel_items(session, limit=limit)
     # Filter to items from the last N days
-    cutoff = datetime.now(timezone.utc) - timedelta(days=since_days)
+    cutoff = datetime.now(UTC) - timedelta(days=since_days)
     recent = [i for i in items if i.detected_at and i.detected_at >= cutoff]
 
     items_to_include = recent if recent else items  # Use recent, or all if none in window

@@ -2,8 +2,6 @@
 
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from agent import analyze_scraped_data
 from scrapers.blog_scraper import _parse_rss_feed
 from scrapers.competitor_config import COMPETITORS, get_competitor

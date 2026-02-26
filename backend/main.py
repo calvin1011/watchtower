@@ -8,9 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from config import settings, validate_required_env
 from database import init_db
 from routes.digest import router as digest_router
-from scheduler import shutdown_scheduler, start_scheduler
 from routes.health import router as health_router
 from routes.intel import router as intel_router
+from scheduler import shutdown_scheduler, start_scheduler
 
 
 @asynccontextmanager
