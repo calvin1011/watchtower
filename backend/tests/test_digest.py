@@ -1,6 +1,6 @@
 """Tests for digest module and routes."""
 
-from datetime import date, datetime, UTC
+from datetime import UTC, date, datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 from uuid import uuid4
 
@@ -9,8 +9,6 @@ from fastapi.testclient import TestClient
 
 from digest import _build_html_email, _group_by_threat, _item_to_dict, build_digest
 from main import app
-
-
 
 # --- Unit tests for digest logic ---
 

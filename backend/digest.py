@@ -1,7 +1,7 @@
 """Build and send Monday morning competitive intel digest via Resend."""
 
 from collections import defaultdict
-from datetime import date, datetime, timedelta, UTC
+from datetime import UTC, date, datetime, timedelta
 from typing import Any
 
 import resend
