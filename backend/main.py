@@ -38,9 +38,11 @@ def _cors_origins() -> list[str]:
     return origins
 
 
+# Allow all Vercel deployments (*.vercel.app) + explicit origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=_cors_origins(),
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
