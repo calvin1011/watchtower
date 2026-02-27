@@ -88,7 +88,7 @@ def analyze_scraped_data(
     user_message = _build_user_message(items, competitor)
 
     response = client.messages.create(
-        model="claude-3-5-sonnet-20241022",
+        model="claude-sonnet-4-5",
         max_tokens=4096,
         system=HAPPYCO_CONTEXT,
         messages=[{"role": "user", "content": user_message}],
