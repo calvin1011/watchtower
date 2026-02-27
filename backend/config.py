@@ -48,6 +48,7 @@ class Settings(BaseSettings):
 
     # App
     port: int = 8000
+    cors_origins: str = ""  # Comma-separated extra origins (e.g. Vercel URL)
 
     # Database
     database_url: str | None = None
