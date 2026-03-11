@@ -168,4 +168,7 @@ def test_run_pipeline_success(client_with_db):
     assert "AppFolio" in data["competitors_run"]
     mock_run.assert_called_once()
     call_args = mock_run.call_args
-    assert call_args[0][0].name == "AppFolio"  # first arg is Competitor
+    assert len(call_args[0]) == 2  # (Competitor, session)
+    assert call_args[0][0].name == "AppFolio"  # first arg is Competitor-like
+    assert call_args[0][0].slug == "appfolio"
+    assert call_args[0][1] is not None  # session

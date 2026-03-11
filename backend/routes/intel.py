@@ -116,11 +116,16 @@ async def run_intel_pipeline(
     """
     competitors = await get_tracked_competitors_from_db(session)
     if not competitors:
-        return {"created": 0, "message": "No competitors configured"}
+        return {"created": 0, "competitors_run": [], "message": "No competitors configured"}
 
     if competitor:
+        key = competitor.strip().lower()
         comp_match = next(
-            (c for c in competitors if c.name == competitor or c.slug == competitor),
+            (
+                c
+                for c in competitors
+                if (c.name or "").lower() == key or (c.slug or "").lower() == key
+            ),
             None,
         )
         if not comp_match:

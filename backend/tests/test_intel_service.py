@@ -26,5 +26,7 @@ async def test_get_tracked_competitors_from_db_returns_active_competitors():
     competitors = await get_tracked_competitors_from_db(mock_session)
     assert len(competitors) == 2
     assert competitors[0].name == "AppFolio"
+    assert competitors[0].slug == "appfolio"
     assert competitors[1].name == "Buildium"
+    assert competitors[1].slug == "buildium"
     mock_session.execute.assert_called_once()
