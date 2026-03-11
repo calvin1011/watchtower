@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { IntelFeed } from "@/components/IntelFeed";
 import { CompetitorCard } from "@/components/CompetitorCard";
+import { AccountSection } from "@/components/AccountSection";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -20,14 +21,17 @@ export default async function DashboardPage() {
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
       <header className="border-b border-border/60 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
-          <nav className="mb-2 flex gap-4 text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">Dashboard</span>
-            <Link href="/digest" className="hover:text-foreground">
-              Digest History
-            </Link>
-            <Link href="/competitors/manage" className="hover:text-foreground">
-              Manage Competitors
-            </Link>
+          <nav className="mb-2 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
+            <div className="flex gap-4">
+              <span className="font-medium text-foreground">Dashboard</span>
+              <Link href="/digest" className="hover:text-foreground">
+                Digest History
+              </Link>
+              <Link href="/competitors/manage" className="hover:text-foreground">
+                Manage Competitors
+              </Link>
+            </div>
+            <AccountSection />
           </nav>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Watchtower

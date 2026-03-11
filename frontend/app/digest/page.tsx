@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { DigestPreview, DigestItem } from "@/components/DigestPreview";
+import { AccountSection } from "@/components/AccountSection";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -43,10 +44,11 @@ export default function DigestPage() {
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
       <header className="border-b border-border/60 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
-          <nav className="mb-2 flex gap-4 text-sm text-muted-foreground">
+          <nav className="mb-2 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground">
               ← Dashboard
             </Link>
+            <AccountSection />
           </nav>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Digest History

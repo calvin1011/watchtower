@@ -30,6 +30,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Pencil, Trash2 } from "lucide-react";
+import { AccountSection } from "@/components/AccountSection";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -231,14 +232,17 @@ export default function ManageCompetitorsPage() {
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
       <header className="border-b border-border/60 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
-          <nav className="mb-2 flex gap-4 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground">
-              Dashboard
-            </Link>
-            <Link href="/digest" className="hover:text-foreground">
-              Digest History
-            </Link>
-            <span className="font-medium text-foreground">Manage Competitors</span>
+          <nav className="mb-2 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
+            <div className="flex gap-4">
+              <Link href="/" className="hover:text-foreground">
+                Dashboard
+              </Link>
+              <Link href="/digest" className="hover:text-foreground">
+                Digest History
+              </Link>
+              <span className="font-medium text-foreground">Manage Competitors</span>
+            </div>
+            <AccountSection />
           </nav>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
