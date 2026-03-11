@@ -1,9 +1,21 @@
 import Link from "next/link";
 import { IntelFeed } from "@/components/IntelFeed";
 import { CompetitorCard } from "@/components/CompetitorCard";
-import { COMPETITORS } from "@/lib/competitors";
 
-export default function DashboardPage() {
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+async function getActiveCompetitors(): Promise<{ name: string; slug: string; [key: string]: unknown }[]> {
+  const res = await fetch(`${API_URL}/competitors`, {
+    cache: "no-store",
+  });
+  if (!res.ok) return [];
+  const data = await res.json();
+  return data.competitors ?? [];
+}
+
+export default async function DashboardPage() {
+  const competitors = await getActiveCompetitors();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
       <header className="border-b border-border/60 bg-background/80 backdrop-blur-sm">
@@ -12,6 +24,9 @@ export default function DashboardPage() {
             <span className="font-medium text-foreground">Dashboard</span>
             <Link href="/digest" className="hover:text-foreground">
               Digest History
+            </Link>
+            <Link href="/competitors/manage" className="hover:text-foreground">
+              Manage Competitors
             </Link>
           </nav>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
@@ -26,8 +41,8 @@ export default function DashboardPage() {
         <section>
           <h2 className="mb-4 text-lg font-semibold">Competitors</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {COMPETITORS.map((c) => (
-              <CompetitorCard key={c.slug} name={c.name} slug={c.slug} />
+            {competitors.map((c) => (
+              <CompetitorCard key={c.slug} competitor={c} />
             ))}
           </div>
         </section>
