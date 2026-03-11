@@ -9,7 +9,7 @@ from apscheduler.triggers.cron import CronTrigger
 from config import settings
 from database import session_context
 from digest import create_and_send_digest
-from services.intel_service import get_tracked_competitors, run_pipeline
+from services.intel_service import get_tracked_competitors_from_db, run_pipeline
 
 logger = logging.getLogger(__name__)
 
@@ -28,16 +28,16 @@ async def _weekly_digest_job() -> None:
 
     async with session_context() as session:
         # 1. Scrape -> Analyze -> Store for each competitor
-        competitors = get_tracked_competitors()
+        competitors = await get_tracked_competitors_from_db(session)
         total_created = 0
-        for competitor in competitors:
+        for comp in competitors:
             try:
-                created = await run_pipeline(competitor, session)
+                created = await run_pipeline(comp, session)
                 total_created += len(created)
                 if created:
-                    logger.info("Pipeline created %d intel items for %s", len(created), competitor)
+                    logger.info("Pipeline created %d intel items for %s", len(created), comp.name)
             except Exception as e:
-                logger.exception("Pipeline failed for %s: %s", competitor, e)
+                logger.exception("Pipeline failed for %s: %s", comp.name, e)
 
         logger.info("Pipeline complete: %d total intel items from %d competitors", total_created, len(competitors))
 

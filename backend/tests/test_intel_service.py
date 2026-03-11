@@ -1,13 +1,30 @@
 """Tests for intel service."""
 
-from services.intel_service import get_tracked_competitors
+from unittest.mock import AsyncMock, MagicMock, patch
+
+import pytest
+
+from services.intel_service import get_tracked_competitors_from_db
 
 
-def test_get_tracked_competitors():
-    """get_tracked_competitors returns competitor names from config."""
-    names = get_tracked_competitors()
-    assert "AppFolio" in names
-    assert "Buildium" in names
-    assert "SmartRent" in names
-    assert "Entrata" in names
-    assert len(names) == 4
+@pytest.mark.asyncio
+async def test_get_tracked_competitors_from_db_returns_active_competitors():
+    """get_tracked_competitors_from_db returns list of Competitor models from DB."""
+    mock_comp1 = MagicMock()
+    mock_comp1.name = "AppFolio"
+    mock_comp1.slug = "appfolio"
+    mock_comp2 = MagicMock()
+    mock_comp2.name = "Buildium"
+    mock_comp2.slug = "buildium"
+
+    mock_result = MagicMock()
+    mock_result.scalars.return_value.all.return_value = [mock_comp1, mock_comp2]
+
+    mock_session = AsyncMock()
+    mock_session.execute = AsyncMock(return_value=mock_result)
+
+    competitors = await get_tracked_competitors_from_db(mock_session)
+    assert len(competitors) == 2
+    assert competitors[0].name == "AppFolio"
+    assert competitors[1].name == "Buildium"
+    mock_session.execute.assert_called_once()

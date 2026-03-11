@@ -125,7 +125,14 @@ def test_get_intel_item_found(client_with_db):
 
 def test_run_pipeline_unknown_competitor(client_with_db):
     """POST /intel/run?competitor=Unknown returns 400."""
-    with patch("routes.intel.get_tracked_competitors", return_value=["AppFolio", "Buildium"]):
+    mock_app = MagicMock()
+    mock_app.name = "AppFolio"
+    mock_app.slug = "appfolio"
+    mock_build = MagicMock()
+    mock_build.name = "Buildium"
+    mock_build.slug = "buildium"
+    with patch("routes.intel.get_tracked_competitors_from_db", new_callable=AsyncMock) as mock_get:
+        mock_get.return_value = [mock_app, mock_build]
         resp = client_with_db.post("/intel/run?competitor=Unknown")
     assert resp.status_code == 400
     assert "Unknown competitor" in resp.json()["detail"]
@@ -145,13 +152,20 @@ def test_search_intel(client_with_db):
 
 def test_run_pipeline_success(client_with_db):
     """POST /intel/run creates intel and returns count."""
+    mock_comp = MagicMock()
+    mock_comp.name = "AppFolio"
+    mock_comp.slug = "appfolio"
     with (
-        patch("routes.intel.get_tracked_competitors", return_value=["AppFolio"]),
+        patch("routes.intel.get_tracked_competitors_from_db", new_callable=AsyncMock) as mock_get,
         patch("routes.intel.run_pipeline", new_callable=AsyncMock) as mock_run,
     ):
+        mock_get.return_value = [mock_comp]
         mock_run.return_value = [MagicMock()]  # one created item
         resp = client_with_db.post("/intel/run?competitor=AppFolio")
     assert resp.status_code == 200
     data = resp.json()
     assert data["created"] == 1
     assert "AppFolio" in data["competitors_run"]
+    mock_run.assert_called_once()
+    call_args = mock_run.call_args
+    assert call_args[0][0].name == "AppFolio"  # first arg is Competitor

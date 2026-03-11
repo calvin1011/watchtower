@@ -8,13 +8,18 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from agent import analyze_scraped_data
 from embeddings import get_embedding
-from models import IntelItem
-from scrapers.competitor_config import COMPETITORS
+from models import Competitor, IntelItem
 from scrapers.scrape_all import scrape_competitor
 
 
+async def get_tracked_competitors_from_db(session: AsyncSession) -> list[Competitor]:
+    """Return list of active competitors from the database."""
+    result = await session.execute(select(Competitor).where(Competitor.is_active == True))
+    return list(result.scalars().all())
+
+
 async def run_pipeline(
-    competitor: str,
+    competitor: Competitor,
     session: AsyncSession,
 ) -> list[IntelItem]:
     """
@@ -28,7 +33,7 @@ async def run_pipeline(
         return []
 
     # 2. Analyze (sync, run in thread pool)
-    analyses = await asyncio.to_thread(analyze_scraped_data, items, competitor)
+    analyses = await asyncio.to_thread(analyze_scraped_data, items, competitor.name)
     if not analyses:
         return []
 
@@ -40,7 +45,7 @@ async def run_pipeline(
         source_url = analysis.source_url or raw_item.get("url")
 
         intel = IntelItem(
-            competitor=competitor,
+            competitor=competitor.name,
             signal_type=analysis.signal_type,
             threat_level=analysis.threat_level,
             threat_reason=analysis.threat_reason,
@@ -86,11 +91,6 @@ async def get_intel_by_id(session: AsyncSession, item_id: UUID) -> IntelItem | N
     """Fetch a single intel item by ID."""
     result = await session.execute(select(IntelItem).where(IntelItem.id == item_id))
     return result.scalars().first()
-
-
-def get_tracked_competitors() -> list[str]:
-    """Return list of competitor names we track."""
-    return [c["name"] for c in COMPETITORS if c.get("name")]
 
 
 async def get_intel_semantic_search(

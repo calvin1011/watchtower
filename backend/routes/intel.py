@@ -11,7 +11,7 @@ from services.intel_service import (
     get_intel_by_id,
     get_intel_items,
     get_intel_semantic_search,
-    get_tracked_competitors,
+    get_tracked_competitors_from_db,
     run_pipeline,
 )
 
@@ -106,23 +106,30 @@ async def get_intel_item(
 
 @router.post("/run")
 async def run_intel_pipeline(
-    competitor: str | None = Query(None, description="Run for one competitor; omit for all"),
+    competitor: str | None = Query(None, description="Run for one competitor (name or slug); omit for all"),
     session: AsyncSession = Depends(get_session),
 ) -> dict:
     """
     Run scrape -> analyze -> store pipeline.
 
-    Specify ?competitor=AppFolio for one, or omit to run for all tracked competitors.
+    Specify ?competitor=AppFolio or ?competitor=appfolio for one, or omit to run for all tracked competitors.
     """
-    competitors = [competitor] if competitor else get_tracked_competitors()
+    competitors = await get_tracked_competitors_from_db(session)
     if not competitors:
         return {"created": 0, "message": "No competitors configured"}
 
-    if competitor and competitor not in get_tracked_competitors():
-        raise HTTPException(
-            status_code=400,
-            detail=f"Unknown competitor: {competitor}. Tracked: {get_tracked_competitors()}",
+    if competitor:
+        comp_match = next(
+            (c for c in competitors if c.name == competitor or c.slug == competitor),
+            None,
         )
+        if not comp_match:
+            names = [c.name for c in competitors]
+            raise HTTPException(
+                status_code=400,
+                detail=f"Unknown competitor: {competitor}. Tracked: {names}",
+            )
+        competitors = [comp_match]
 
     total_created = 0
     for comp in competitors:
@@ -131,5 +138,5 @@ async def run_intel_pipeline(
 
     return {
         "created": total_created,
-        "competitors_run": competitors,
+        "competitors_run": [c.name for c in competitors],
     }

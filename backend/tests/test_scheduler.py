@@ -40,22 +40,28 @@ async def test_weekly_digest_job_runs_pipeline_and_send():
     mock_session = AsyncMock()
     mock_session.commit = AsyncMock()
     mock_session.refresh = AsyncMock()
+    mock_comp = MagicMock()
+    mock_comp.name = "AppFolio"
 
     with (
         patch("scheduler.settings") as mock_settings,
         patch("scheduler.session_context") as mock_ctx,
+        patch("scheduler.get_tracked_competitors_from_db", new_callable=AsyncMock) as mock_get_comp,
         patch("scheduler.run_pipeline", new_callable=AsyncMock) as mock_pipeline,
         patch("scheduler.create_and_send_digest", new_callable=AsyncMock) as mock_send,
     ):
         mock_settings.database_url = "postgresql://test"
         mock_ctx.return_value.__aenter__ = AsyncMock(return_value=mock_session)
         mock_ctx.return_value.__aexit__ = AsyncMock(return_value=None)
+        mock_get_comp.return_value = [mock_comp]
         mock_pipeline.return_value = []
         mock_send.return_value = MagicMock(week_of="2025-02-24", recipient="jindou@happy.co")
 
         await _weekly_digest_job()
 
-        assert mock_pipeline.call_count >= 1
+        mock_get_comp.assert_called_once_with(mock_session)
+        assert mock_pipeline.call_count == 1
+        mock_pipeline.assert_called_with(mock_comp, mock_session)
         mock_send.assert_called_once_with(mock_session, since_days=7)
 
 
