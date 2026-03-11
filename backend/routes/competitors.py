@@ -68,7 +68,7 @@ async def list_competitors(
     """List competitors. By default only active; set include_inactive=true for all."""
     stmt = select(Competitor).order_by(Competitor.name)
     if not include_inactive:
-        stmt = stmt.where(Competitor.is_active == True)
+        stmt = stmt.where(Competitor.is_active)
     result = await session.execute(stmt)
     competitors = list(result.scalars().all())
     return {"competitors": [_competitor_to_dict(c) for c in competitors], "count": len(competitors)}
