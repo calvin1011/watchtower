@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings, validate_required_env
 from database import init_db
+from routes.competitors import router as competitors_router
 from routes.digest import router as digest_router
 from routes.health import router as health_router
 from routes.intel import router as intel_router
@@ -51,3 +52,4 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(intel_router)
 app.include_router(digest_router)
+app.include_router(competitors_router)
