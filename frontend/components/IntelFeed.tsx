@@ -45,7 +45,7 @@ function formatDate(iso: string | null): string {
 
 function IntelCard({ item }: { item: IntelItem }) {
   return (
-    <div className="rounded-xl border border-border bg-card/80 p-4 shadow transition-all hover:border-primary/30 hover:shadow-lg">
+    <div className="rounded-xl border border-border bg-card/95 p-4 shadow transition-all hover:border-primary/50 hover:shadow-md hover:shadow-primary/5">
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <h3 className="font-semibold">{item.competitor}</h3>
         <div className="flex items-center gap-2">

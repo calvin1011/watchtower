@@ -20,7 +20,7 @@ export function CompetitorCard({ competitor }: CompetitorCardProps) {
   const { name, slug, intelCount } = competitor;
   return (
     <Link href={`/competitors/${slug}`}>
-      <Card className="group cursor-pointer border-border transition-all hover:border-primary/30 hover:shadow-lg">
+      <Card className="group cursor-pointer border-border bg-card/95 transition-all hover:border-primary/50 hover:shadow-md hover:shadow-primary/5">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <h3 className="font-semibold">{name}</h3>
           <ChevronRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />

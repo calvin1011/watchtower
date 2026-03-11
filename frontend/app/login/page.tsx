@@ -34,15 +34,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
-      <header className="border-b border-border/60 bg-background/80 backdrop-blur-sm">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/50">
+      <header className="gradient-accent border-b border-primary/20 bg-background/90 backdrop-blur-md">
         <div className="container mx-auto px-4 py-6">
           <nav className="mb-2 flex gap-4 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground">
+            <Link href="/" className="hover:text-primary transition-colors">
               ← Dashboard
             </Link>
           </nav>
-          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
             Watchtower
           </h1>
           <p className="mt-1 text-muted-foreground">
@@ -51,7 +51,7 @@ export default function LoginPage() {
         </div>
       </header>
       <main className="container mx-auto flex min-h-[calc(100vh-140px)] flex-col items-center justify-center px-4 py-8">
-        <Card className="w-full max-w-md border-border shadow-lg">
+        <Card className="w-full max-w-md border-primary/20 bg-card/95 shadow-xl shadow-primary/5">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl">Sign in</CardTitle>
             <CardDescription>

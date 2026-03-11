@@ -33,7 +33,7 @@ export function AccountSection() {
     return (
       <Link
         href="/login"
-        className="text-sm text-muted-foreground hover:text-foreground"
+        className="text-sm text-muted-foreground hover:text-primary transition-colors"
       >
         Sign in
       </Link>

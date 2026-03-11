@@ -229,15 +229,15 @@ export default function ManageCompetitorsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
-      <header className="border-b border-border/60 bg-background/80 backdrop-blur-sm">
+    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/50">
+      <header className="gradient-accent border-b border-primary/20 bg-background/90 backdrop-blur-md">
         <div className="container mx-auto px-4 py-6">
           <nav className="mb-2 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
             <div className="flex gap-4">
-              <Link href="/" className="hover:text-foreground">
+              <Link href="/" className="hover:text-primary transition-colors">
                 Dashboard
               </Link>
-              <Link href="/digest" className="hover:text-foreground">
+              <Link href="/digest" className="hover:text-primary transition-colors">
                 Digest History
               </Link>
               <span className="font-medium text-foreground">Manage Competitors</span>
@@ -245,7 +245,7 @@ export default function ManageCompetitorsPage() {
             <AccountSection />
           </nav>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl text-foreground">
               Manage Competitors
             </h1>
             <Button onClick={openAdd}>Add Competitor</Button>
