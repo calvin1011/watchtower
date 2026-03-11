@@ -200,8 +200,8 @@ Detailed phase document for building the HappyCo Competitive Intelligence Agent.
 
 **Tasks:**
 - [x] End-to-end test: manual scrape -> verify intel in DB -> trigger digest (see `scripts/e2e_test.ps1`)
-- [ ] Record 3–5 min Loom walking through product (see `docs/LOOM_SCRIPT.md`)
-- [ ] Email submission to jindou@happy.co
+- [x] Record 3–5 min Loom walking through product (see `docs/LOOM_SCRIPT.md`)
+- [x] Email submission to jindou@happy.co
 
 ---
 
