@@ -1,16 +1,27 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { IntelFeed } from "@/components/IntelFeed";
-import { slugToName } from "@/lib/competitors";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+async function getCompetitorBySlug(slug: string): Promise<{ name: string } | null> {
+  const res = await fetch(`${API_URL}/competitors`, { cache: "no-store" });
+  if (!res.ok) return null;
+  const data = await res.json();
+  const list = data.competitors ?? [];
+  const match = list.find((c: { slug: string }) => c.slug === slug);
+  return match ? { name: match.name } : null;
+}
 
 interface CompetitorPageProps {
   params: { slug: string };
 }
 
-export default function CompetitorPage({ params }: CompetitorPageProps) {
+export default async function CompetitorPage({ params }: CompetitorPageProps) {
   const { slug } = params;
-  const name = slugToName(slug);
-  if (!name) notFound();
+  const competitor = await getCompetitorBySlug(slug);
+  if (!competitor) notFound();
+  const { name } = competitor;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30">
@@ -22,6 +33,9 @@ export default function CompetitorPage({ params }: CompetitorPageProps) {
             </Link>
             <Link href="/digest" className="hover:text-foreground">
               Digest History
+            </Link>
+            <Link href="/competitors/manage" className="hover:text-foreground">
+              Manage Competitors
             </Link>
           </nav>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
