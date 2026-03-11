@@ -14,7 +14,7 @@ from scrapers.scrape_all import scrape_competitor
 
 async def get_tracked_competitors_from_db(session: AsyncSession) -> list[Competitor]:
     """Return list of active competitors from the database."""
-    result = await session.execute(select(Competitor).where(Competitor.is_active == True))
+    result = await session.execute(select(Competitor).where(Competitor.is_active))
     return list(result.scalars().all())
 
 
